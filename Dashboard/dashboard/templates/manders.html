@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+    Manders
+{% endblock %}
+{% block content %}
+
+<h2>Mandaderos</h2>
+
+<!-- Buscador -->
+<form method="get" action="{% url 'manders_view' %}">
+    <input type="text" name="search" placeholder="Buscar por nombre" value="{{ search_query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<!-- Resultados de la búsqueda -->
+{% if search_query %}
+    <p>Resultados para la búsqueda: "{{ search_query }}"</p>
+{% endif %}
+
+<!-- Tabla de mandaderos -->
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Teléfono</th>
+            <th>Foto</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if manders_list %}
+            {% for mander_profile in manders_list %}
+                <tr>
+                    <td>{{ mander_profile.name_userProfile }}</td>
+                    <td>{{ mander_profile.lastname_userProfile }}</td>
+                    <td>{{ mander_profile.phone_userProfile }}</td>
+                    <td><img src="{{ mander_profile.image_id_image.url_image }}" alt="Foto del usuario" width="30"></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3">Usuario no encontrado</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

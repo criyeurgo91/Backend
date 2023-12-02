@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+    Users
+{% endblock %}
+{% block content %}
+
+<h2>Usuarios</h2>
+
+<!-- Buscador -->
+<form method="get" action="{% url 'users_view' %}">
+    <input type="text" name="search" placeholder="Buscar por nombre" value="{{ search_query }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<!-- Resultados de la búsqueda -->
+{% if search_query %}
+    <p>Resultados para la búsqueda: "{{ search_query }}"</p>
+{% endif %}
+
+<!-- Tabla de usuarios -->
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% if users_list %}
+            {% for user_profile in users_list %}
+                <tr>
+                    <td>{{ user_profile.name_userProfile }}</td>
+                    <td>{{ user_profile.lastname_userProfile }}</td>
+                    <td>{{ user_profile.phone_userProfile }}</td>
+                    <td>{{ user_profile.account_id_account.email_account }}</td>
+                    <td>
+                        <button>Editar</button>
+                    </td>
+
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="3">Usuario no encontrado</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% endblock %}

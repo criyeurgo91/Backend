@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+    Editar Usuario
+{% endblock %}
+{% block content %}
+
+<h2>Editar Usuario</h2>
+
+<form method="post" action="{% url 'edit_user' user_profile.id_userProfile %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+</form>
+
+<a href="{% url 'users_view' %}">Volver a la lista de usuarios</a>
+
+{% endblock %}

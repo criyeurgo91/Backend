@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+<h1>Estadísticas</h1>
+
+<h2>Usuarios Registrados: {{ users_count }}</h2>
+
+<h2>Mandaderos: {{ manders_count }}</h2>
+
+<h2>Pedidos</h2>
+<h3>Pendientes: {{ pending_requests_count }}</h3>
+
+<h3>En Proceso: {{ in_process_requests_count }}</h3>
+
+<h3>Completados: {{ completed_requests_count }}</h3>
+
+<h2>Mandaderos Disponibles: {{ available_manders_count }}</h2>
+{% endblock %}
